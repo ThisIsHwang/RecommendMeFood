@@ -707,8 +707,10 @@ stop_words: str = """아
 하다
 """
 stop_words = stop_words.split('\n')
+
+
 corpus = [
-    ''
+    """ ''
     ,
     '나는 치킨이 먹고 싶다. 치킨에 맥주는 환상의 조합이다. 그 중에서도 교촌을 제일 좋아한다. 간장 치킨 만세. 주로 나는 기분 전환을 하고 싶을 때 치킨을 먹는다.'
     ,
@@ -720,10 +722,29 @@ corpus = [
     ,
     '나는 어제 젤리를 100g 먹었다. 입이 심심할 때는 젤리 만한게 없다. 쫄깃쫄깃한 식감... 달콤한 맛은 너무 맛있다.'
     , '오늘은 졸업식이다. 다같이 가족끼리 중국집에 왔다. 탕수육도 시켰다.',
-    '오늘은 말복이다. 몸보신을 해야겠다. 그러므로 오늘의 메뉴는 삼계탕!'
+    '오늘은 말복이다. 몸보신을 해야겠다. 그러므로 오늘의 메뉴는 삼계탕!'"""
 ]
 
-indices = ['', '치킨', '떡볶이', '삽겹살', '피자', '젤리', '짜장면', '삼계탕']
+indices = ["""
+    '', '치킨', '떡볶이', '삽겹살', '피자', '젤리', '짜장면', '삼계탕'
+    """
+    ]
+
+def getCorpus():
+    directories = ['food1', 'food2', 'food3_치킨']
+    directories2 = ['짜장면', '짬뽕', '치킨']
+    for idx, d in enumerate(directories):
+        temp =  '/home/dhkim/Desktop/' + d + '/'
+        
+        for i in range(0, 5):
+            temp2 = ""
+            with open(temp + str(i) + ".txt", "rt", encoding="utf-8") as f:
+                lines = f.readlines()
+                for l in lines:
+                    temp2 += l
+                corpus.append(temp2)
+                indices.append(directories2[idx])
+
 
 
 def morph_and_stopword(s):
@@ -741,7 +762,7 @@ def morph_and_stopword(s):
 def sub_special(s):
     return re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z ]', '', s)
 
-
+getCorpus()
 text = input()
 corpus[0] = text
 
