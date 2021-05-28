@@ -3,9 +3,7 @@
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
-import time
 import re
-
 from konlpy.tag import Okt
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
@@ -709,34 +707,15 @@ stop_words: str = """아
 stop_words = stop_words.split('\n')
 
 
-corpus = [
-    """ ''
-    ,
-    '나는 치킨이 먹고 싶다. 치킨에 맥주는 환상의 조합이다. 그 중에서도 교촌을 제일 좋아한다. 간장 치킨 만세. 주로 나는 기분 전환을 하고 싶을 때 치킨을 먹는다.'
-    ,
-    '매운 맛이 먹고싶다. 스트레스를 많이 받아서 매운 맛을 먹음으로서 스트레스를 풀고 싶다.'
-    ,
-    '오늘은 돼지고기가 먹고 싶다. 배에 기름칠을 하자. 삼겹살 쉬익 쉬익 맛있겠다.'
-    ,
-    '치즈가 쭈욱 늘어난다. 토마토 소스가 일품이다. 나는 쉬림프 토핑을 좋아한다. 씨푸드 피자 좋아. 맥주도 역시 좋다'
-    ,
-    '나는 어제 젤리를 100g 먹었다. 입이 심심할 때는 젤리 만한게 없다. 쫄깃쫄깃한 식감... 달콤한 맛은 너무 맛있다.'
-    , '오늘은 졸업식이다. 다같이 가족끼리 중국집에 왔다. 탕수육도 시켰다.',
-    '오늘은 말복이다. 몸보신을 해야겠다. 그러므로 오늘의 메뉴는 삼계탕!'"""
-]
-
-indices = ["""
-    '', '치킨', '떡볶이', '삽겹살', '피자', '젤리', '짜장면', '삼계탕'
-    """
-    ]
+corpus = []
+indices = []
 
 def getCorpus():
-    directories = ['food1', 'food2', 'food3_치킨']
-    directories2 = ['짜장면', '짬뽕', '치킨']
+    directories = ['food1', 'food2', 'food3_치킨', '족발']
+    directories2 = ['짜장면', '짬뽕', '치킨', '족발']
     for idx, d in enumerate(directories):
         temp =  '/home/dhkim/Desktop/' + d + '/'
-        
-        for i in range(0, 5):
+        for i in range(0, 90):
             temp2 = ""
             with open(temp + str(i) + ".txt", "rt", encoding="utf-8") as f:
                 lines = f.readlines()
@@ -762,34 +741,16 @@ def morph_and_stopword(s):
 def sub_special(s):
     return re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z ]', '', s)
 
-getCorpus()
-text = input()
-corpus[0] = text
 
-for i, c in enumerate(corpus):
-    corpus[i] = sub_special(corpus[i])
-    corpus[i] = morph_and_stopword(corpus[i])
-    print(corpus[i])
-
-tfidf = TfidfVectorizer()
-tfidf_matrix = tfidf.fit_transform(corpus)
-# 줄거리에 대해서 tf-idf 수행
-print(tfidf_matrix.shape)
-cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
-
-
-def recommendFood(title, cosine_sim=cosine_sim):
-    # 입력한 영화로 부터 인덱스 가져오기
-    # idx = indices[title]
-
-    # 모든 영화에 대해서 해당 영화와의 유사도를 구하기
+def recommendFood(title, cosine_sim):
+    # 기존 데이터와 음식 유사도를 구하기
     sim_scores = list(enumerate(cosine_sim[0]))
 
-    # 유사도에 따라 영화들을 정렬
+    # 유사도에 따라 정렬
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
 
-    # 가장 유사한 10개의 영화를 받아옴
-    sim_scores = sim_scores[1:]
+    # 가장 유사한 10개의 음식을 받아옴
+    sim_scores = sim_scores[1:11]
 
     # 가장 유사한 10개 영화의 인덱스 받아옴
     movie_indices = [i[0] for i in sim_scores]
@@ -807,4 +768,26 @@ def recommendFood(title, cosine_sim=cosine_sim):
     return
 
 
-recommendFood(text)
+def preProcessSentence(sentence):
+    sentence = sub_special(sentence)
+    sentence = morph_and_stopword(sentence)
+    return sentence
+
+
+def preProcessCorpus():
+    for i, c in enumerate(corpus):
+        corpus[i] = preProcessSentence(c)
+
+
+getCorpus()
+text = input()
+corpus[0] = text
+
+preProcessCorpus()   
+print(corpus[0])
+
+tfidf = TfidfVectorizer()
+tfidf_matrix = tfidf.fit_transform(corpus)
+print(tfidf_matrix.shape)
+cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+recommendFood(text, cosine_sim)
