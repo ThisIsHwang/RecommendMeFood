@@ -62,7 +62,6 @@ stop_words: str = """아
 든간에
 논하지 않다
 따지지 않다
-설사
 비록
 더라도
 아니면
@@ -259,7 +258,8 @@ stop_words: str = """아
 이젠
 된바에야
 된이상
-만큼	어찌됏든
+만큼	
+어찌됏든
 그위에
 게다가
 점에서 보아
@@ -778,16 +778,16 @@ def preProcessCorpus():
     for i, c in enumerate(corpus):
         corpus[i] = preProcessSentence(c)
 
+if __name__ == '__main__':
+    getCorpus()
+    text = input()
+    corpus[0] = text
 
-getCorpus()
-text = input()
-corpus[0] = text
+    preProcessCorpus()   
+    print(corpus[0])
 
-preProcessCorpus()   
-print(corpus[0])
-
-tfidf = TfidfVectorizer()
-tfidf_matrix = tfidf.fit_transform(corpus)
-print(tfidf_matrix.shape)
-cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
-recommendFood(text, cosine_sim)
+    tfidf = TfidfVectorizer()
+    tfidf_matrix = tfidf.fit_transform(corpus)
+    print(tfidf_matrix.shape)
+    cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+    recommendFood(text, cosine_sim)
