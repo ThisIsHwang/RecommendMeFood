@@ -3,6 +3,7 @@
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
+from elasticsearch import Elasticsearch
 import re
 from konlpy.tag import Okt
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -707,12 +708,18 @@ stop_words: str = """아
 stop_words = stop_words.split('\n')
 
 
-corpus = []
-indices = []
+corpus = [' ', ]
+indices = [' ', ]
 
-def getCorpus():
+es_host="127.0.0.1"
+es_port="9200"
+
+es = Elasticsearch([{"host" : es_host, 'port' : es_port}], timeout = 30)
+
+
+def getCorpus2():
     directories = ['food1', 'food2', 'food3_치킨', '족발']
-    directories2 = ['짜장면', '짬뽕', '치킨', '족발']
+    directories2 = ['치킨', '족발', '김밥', '라면', '짜장면', '피자']
     for idx, d in enumerate(directories):
         temp =  '/home/dhkim/Desktop/' + d + '/'
         for i in range(0, 90):
@@ -725,11 +732,19 @@ def getCorpus():
                 indices.append(directories2[idx])
 
 
+def getCorpus():
+    data = {"match_all" : {}}
+    body = {"query" : data}
+    docs = es.search(index='food', body=body, size=10000)
+    if docs['hits']['total']['value']>0:
+        for doc in docs['hits']['hits']:
+            corpus.append(doc['_source']['content'])
+            indices.append(doc['_source']['food_name'])
 
 def morph_and_stopword(s):
     token_ls = ""
     # 형태소 분석
-    tmp = okt.morphs(s, stem=True)
+    tmp = okt.morphs(s, stem=True, norm=True)
 
     # 불용어 처리
     for token in tmp:
@@ -753,7 +768,7 @@ def recommendFood(title, cosine_sim):
     sim_scores = sim_scores[1:11]
 
     # 가장 유사한 10개 영화의 인덱스 받아옴
-    movie_indices = [i[0] for i in sim_scores]
+    food_indices = [i[0] for i in sim_scores]
 
     # 기존에 읽어들인 데이터에서 해당 인덱스의 값들을 가져온다. 그리고 스코어 열을 추가하여 코사인 유사도도 확인할 수 있게 한다.
     """result_df = df.iloc[movie_indices].copy()
@@ -762,9 +777,11 @@ def recommendFood(title, cosine_sim):
     # 읽어들인 데이터에서 줄거리 부분만 제거, 제목과 스코어만 보이게 함
     del result_df['content']
     """
-    for i in movie_indices:
+    
+    for i in food_indices:
         print(indices[i])
-    print("결과 : " + indices[movie_indices[0]])
+        print(corpus[i])
+    print("결과 : " + indices[food_indices[0]])
     return
 
 
@@ -780,12 +797,14 @@ def preProcessCorpus():
 
 if __name__ == '__main__':
     getCorpus()
-    text = input()
-    corpus[0] = text
+    text = input("쓰고 싶은 말을 쓰세요 : ")
+    
 
-    preProcessCorpus()   
+    #preProcessCorpus()   
+    corpus[0] = preProcessSentence(text)
+    indices[0] = 'user'
     print(corpus[0])
-
+    
     tfidf = TfidfVectorizer()
     tfidf_matrix = tfidf.fit_transform(corpus)
     print(tfidf_matrix.shape)
