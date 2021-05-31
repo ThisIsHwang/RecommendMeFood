@@ -1,5 +1,5 @@
 
-from . import koreanSimilarityTest2
+from koreanSimilarityTest2 import preProcessSentence
 import sys
 from elasticsearch import Elasticsearch
 import os
@@ -35,13 +35,7 @@ for f in food_name_list:
 
     retdata = response_body.decode('utf-8')
     jsonresult = json.loads(retdata)
-    e1={
-"first_name":"Iron",
-"last_name":"Man",
-"age":27,
-"about":"Hello world",
-"interests":['sports','music'],
-}
+
     k=0
     for i in jsonresult['items']:
         if "naver" in i['link']:
@@ -59,7 +53,8 @@ for f in food_name_list:
             for a in soup.find_all('p'):
                 #print(a.get_text())
             
-                food_data['content'] += preProcessSentence(a.get_text())
+                food_data['content'] += a.get_text()
+            food_data['content'] = preProcessSentence(food_data['content'])
             k+=1
             
             res= es.index(index='food', doc_type='food', body=food_data)
