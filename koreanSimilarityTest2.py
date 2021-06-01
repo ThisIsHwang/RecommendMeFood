@@ -67,7 +67,7 @@ def recommendFood(title, cosine_sim):
         print(corpus[i])
         """
     print("결과 : " + food_names[food_indices[0]])
-    return
+    return food_names[food_indices[0]]
 
 #문장 자연어 전처리를 해주는 함수
 def preProcessSentence(sentence):
@@ -80,7 +80,9 @@ def preProcessCorpus():
     for i, c in enumerate(contents):
         contents[i] = preProcessSentence(c)
 
+
 if __name__ == '__main__':
+    
     getCorpus()
     #DB에서 데이터를 가져온다.
     text = input("쓰고 싶은 말을 쓰세요 : ")
@@ -97,3 +99,4 @@ if __name__ == '__main__':
     #TF-IDF 벡터로 코사인 유사도를 분석한다.
     cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
     recommendFood(text, cosine_sim)
+    
