@@ -61,11 +61,11 @@ def recommendFood(title, cosine_sim):
     # 가장 유사한 10개 음식의 인덱스 받아옴
     food_indices = [i[0] for i in sim_scores]
 
-    """
+    
     for i in food_indices:
-        print(indices[i])
-        print(corpus[i])
-        """
+        print(food_names[i])
+        print(contents[i])
+        
     print("결과 : " + food_names[food_indices[0]])
     return food_names[food_indices[0]]
 
