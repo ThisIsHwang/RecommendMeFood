@@ -6,7 +6,14 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-		
+		<script>
+			var _showPage = function() {
+    			var loader = $("div.loader");
+    			var container = $("div.container");
+			    loader.css("display","none");
+    		container.css("display","block");
+  			};
+		</script>
 	</head>
 	<body class="is-preload">
 
@@ -81,28 +88,29 @@
 							<ul class="actions special">
 								
 									<a href="#layer2" id="resultButton" class="btn-example">결과 보기</a>
-									
 									<div class="dim-layer">
 										<div class="dimBg"></div>
 										<div id="layer2" class="pop-layer">
 											<div class="pop-container">
 												<div class="pop-conts">
 													<!--content //-->
-													<p class="ctxt mb20">
-														{{food_name}}
+													<p id="resultText" class="ctxt mb20">
+														<!--{{food_name}} -->
 													</p>
 													<p class="card">
-														<img src="../static/images/rameon.jpg" style="width : 80%; height:auto;"/>
+														<img id="resultImage" src="" style="width : 80%; height:auto;"/>
 													</p>
 													<!-- close button -->
 													<div class="btn-r">
-														<a href="#" class="btn-layerClose">Close</a>
+														<a href="#" class="btn-layerClose">확인</a>
 													</div>
 													<!--// content-->
 												</div>
 											</div>
 										</div>
 									</div>
+									
+									
 								
 			</section>
 
@@ -137,6 +145,9 @@
 				$('#resultButton').click(function(){
 					var content = $('#text').val();
 					console.log("clicked")
+					document.getElementById("resultText").innerHTML =  "";
+					
+					document.getElementById("resultImage").src = "";
 					console.log(content)
 					var postdata = {
 						'content':content
@@ -149,7 +160,10 @@
 						headers: {"Content-Type": "application/json"},
 						contentType: "application/json",
 						success: function(data){
-							alert('성공! 데이터 값:' + data.result2['content'])
+							//alert('성공! 데이터 값:' + data.result2)
+							document.getElementById("resultText").innerHTML =  data.result2;
+							console.log(data.linkResult)
+							document.getElementById("resultImage").src = data.linkResult;
 						},
 						error: function(request, status, error){
 							alert('ajax 통신 실패')

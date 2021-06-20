@@ -27,6 +27,22 @@ es_port="9200"
 
 es = Elasticsearch([{"host" : es_host, 'port' : es_port}], timeout = 30)
 
+def getFoodImgLink(food):
+    result = ""
+    if food == "라면":
+        result = "../static/images/rameon.jpg"
+    if food == "족발":
+        result = "../static/images/jogbal.jpg"
+    if food == "치킨":
+        result = "../static/images/chicken.jpg"
+    if food == "피자":
+        result = "../static/images/pizza.jpg"
+    if food == "짜장면":
+        result = "../static/images/noodle.jpg"
+    if food == "김밥":
+        result = "../static/images/gimbap.jpg"        
+    return result
+
 #DB에서 크롤링한 데이터를 받아오기 위한 함수이다
 def getCorpus():
     data = {"match_all" : {}}
@@ -92,8 +108,8 @@ def home():
 
 @app.route('/ajax', methods=['POST'])
 def ajax():
-    recommendation = request.get_json()
-
+    recommendation = request.get_json()['content']
+    print(recommendation)
     getCorpus()
     #DB에서 데이터를 가져온다.
     text = recommendation
@@ -111,13 +127,16 @@ def ajax():
     #TF-IDF 벡터로 코사인 유사도를 분석한다.
     cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
     result = recommendFood(text, cosine_sim)
-    print(data)
-    return jsonify(result="success", result2=result)
+    #print(data)
+    print("결과 : " + result)
+    link = getFoodImgLink(result)
+    print(link)
+    return jsonify(result="success", result2=result, linkResult=link)
 
 @app.route('/diary_text', methods=['POST'])
 def any():
     recommendation = request.form['story']
-
+    
     getCorpus()
     #DB에서 데이터를 가져온다.
     text = recommendation
