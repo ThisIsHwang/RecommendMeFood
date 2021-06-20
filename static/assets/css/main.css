@@ -2387,3 +2387,12 @@ input, select, textarea {
 			background-color: #1f326a;
 			color: #fff;
 		  }
+
+		  .card {
+			-moz-box-sizing: content-box;
+			-webkit-box-sizing: content-box;
+			-ms-box-sizing: content-box;
+			box-sizing: content-box;
+			background: #fff;
+			box-shadow: 0 0.1em 0.15em 0 rgba(0, 0, 0, 0.15);
+		}
