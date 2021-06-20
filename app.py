@@ -92,9 +92,27 @@ def home():
 
 @app.route('/ajax', methods=['POST'])
 def ajax():
-    data = request.get_json()
+    recommendation = request.get_json()
+
+    getCorpus()
+    #DB에서 데이터를 가져온다.
+    text = recommendation
+    
+    #TF-IDF를 사용자의 글과 함께 비교하기 위해서 코퍼스에 추가한다.
+    contents[0] = preProcessSentence(text)
+    food_names[0] = 'user'
+    print(contents[0])
+    
+    #TF-IDF 벡터를 구한다.
+    tfidf = TfidfVectorizer()
+    tfidf_matrix = tfidf.fit_transform(contents)
+    #print(tfidf_matrix.shape)
+
+    #TF-IDF 벡터로 코사인 유사도를 분석한다.
+    cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+    result = recommendFood(text, cosine_sim)
     print(data)
-    return jsonify(result="success", result2= data)
+    return jsonify(result="success", result2=result)
 
 @app.route('/diary_text', methods=['POST'])
 def any():
