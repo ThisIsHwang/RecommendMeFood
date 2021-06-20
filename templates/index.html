@@ -160,7 +160,6 @@
 						headers: {"Content-Type": "application/json"},
 						contentType: "application/json",
 						success: function(data){
-							//alert('성공! 데이터 값:' + data.result2)
 							document.getElementById("resultText").innerHTML =  data.result2;
 							console.log(data.linkResult)
 							document.getElementById("resultImage").src = data.linkResult;

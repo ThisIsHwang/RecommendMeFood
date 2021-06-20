@@ -27,6 +27,7 @@ es_port="9200"
 
 es = Elasticsearch([{"host" : es_host, 'port' : es_port}], timeout = 30)
 
+#음식의 링크를 받아옵니다.
 def getFoodImgLink(food):
     result = ""
     if food == "라면":
@@ -103,7 +104,6 @@ def preProcessCorpus():
 
 @app.route('/')
 def home():
-
     return render_template('index.html') #첫 메인 홈페이지 정식이꺼 index.html , 근철이꺼 home.html
 
 @app.route('/ajax', methods=['POST'])
@@ -132,28 +132,3 @@ def ajax():
     link = getFoodImgLink(result)
     print(link)
     return jsonify(result="success", result2=result, linkResult=link)
-
-@app.route('/diary_text', methods=['POST'])
-def any():
-    recommendation = request.form['story']
-    
-    getCorpus()
-    #DB에서 데이터를 가져온다.
-    text = recommendation
-    
-    #TF-IDF를 사용자의 글과 함께 비교하기 위해서 코퍼스에 추가한다.
-    contents[0] = preProcessSentence(text)
-    food_names[0] = 'user'
-    print(contents[0])
-    
-    #TF-IDF 벡터를 구한다.
-    tfidf = TfidfVectorizer()
-    tfidf_matrix = tfidf.fit_transform(contents)
-    #print(tfidf_matrix.shape)
-
-    #TF-IDF 벡터로 코사인 유사도를 분석한다.
-    cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
-    result = recommendFood(text, cosine_sim)
-
-    return render_template('result.html',food_name= result)
-
