@@ -5,6 +5,8 @@
 		<link rel="stylesheet" href="../static/assets/css/main.css">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+		
 	</head>
 	<body class="is-preload">
 
@@ -71,13 +73,15 @@
 						<p>바쁜 일상 속 결정이 어렵다면 제품명을 추천합니다. 당신이 생각해내지 못한 식사들이 가득합니다.</p>
 					</header>
 					<div class="box">
-						<form method="post" action="#">
+						<form method="POST" action="/diary_text">
+							
 							<div class="fields">
-								<div class="field"><textarea name="message" placeholder="망설이지 말고 작성해보세요." rows="6"></textarea></div>
+								<div class="field"><textarea id="text" name="story" placeholder="망설이지 말고 작성해보세요." rows="6"></textarea></div>
 							</div>
 							<ul class="actions special">
 								
-									<a href="#layer2" class="btn-example">결과 보기</a>
+									<a href="#layer2" id="resultButton" class="btn-example">결과 보기</a>
+									
 									<div class="dim-layer">
 										<div class="dimBg"></div>
 										<div id="layer2" class="pop-layer">
@@ -88,8 +92,10 @@
 														{{food_name}}
 													</p>
 													<p class="card">
-														<img src="../static/images/rameon.jpg" style="width : 35%; height:auto;"/>
+														
+														<img src="../static/images/rameon.jpg" style="width : 80%; height:auto;"/>
 													</p>
+													
 													<!-- close button -->
 													<div class="btn-r">
 														<a href="#" class="btn-layerClose">Close</a>
@@ -99,6 +105,7 @@
 											</div>
 										</div>
 									</div>
+								
 			</section>
 
 		<!-- Footer -->
@@ -106,9 +113,9 @@
 
 				<!-- Icons -->
 					<ul class="icons">
-						<li><a href="https://www.baemin.com/" class="icon brands fa-baemin"><span class="label">배달의 민족</span></a></li>
-						<li><a href="https://www.yogiyo.co.kr/mobile/#/" class="icon brands fa-yogiyo"><span class="label">요기요 배달</span></a></li>
-						<li><a href="https://www.coupangeats.com/" class="icon brands fa-coupang-eats"><span class="label">쿠팡eats</span></a></li>
+						<li><a href="https://www.baemin.com/" class="icon brands fa-baemin"><span class="label">배달<br/>민족</span></a></li>
+						<li><a href="https://www.yogiyo.co.kr/mobile/#/" class="icon brands fa-yogiyo"><span class="label">요기요<br/>배달</span></a></li>
+						<li><a href="https://www.coupangeats.com/" class="icon brands fa-coupang-eats"><span class="label">쿠팡<br/>eats</span></a></li>
 					</ul>
 
 				<!-- Menu -->
@@ -128,5 +135,30 @@
 			<script src="../static/assets/js/util.js"></script>
 			<script src="../static/assets/js/main.js"></script>
 			<script src="../static/assets/js/popup.js"></script>
+			<script>
+				$('#resultButton').click(function(){
+					var content = $('#text').val();
+					console.log("clicked")
+					console.log(content)
+					var postdata = {
+						'content':content
+					}
+					$.ajax({
+						type: 'POST',
+						url: '/ajax',
+						data: JSON.stringify(postdata),
+						dataType : 'JSON',
+						headers: {"Content-Type": "application/json"},
+						contentType: "application/json",
+						success: function(data){
+							alert('성공! 데이터 값:' + data.result2['content'])
+						},
+						error: function(request, status, error){
+							alert('ajax 통신 실패')
+							alert(error);
+						}
+					})
+				})
+				</script>
 	</body>
 </html>

@@ -90,6 +90,12 @@ def home():
 
     return render_template('index.html') #첫 메인 홈페이지 정식이꺼 index.html , 근철이꺼 home.html
 
+@app.route('/ajax', methods=['POST'])
+def ajax():
+    data = request.get_json()
+    print(data)
+    return jsonify(result="success", result2= data)
+
 @app.route('/diary_text', methods=['POST'])
 def any():
     recommendation = request.form['story']
@@ -113,3 +119,4 @@ def any():
     result = recommendFood(text, cosine_sim)
 
     return render_template('result.html',food_name= result)
+
