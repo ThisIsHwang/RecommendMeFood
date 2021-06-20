@@ -1,5 +1,5 @@
 
-from koreanSimilarityTest2 import preProcessSentence
+from koreanSimilarity import preProcessSentence
 import sys
 from elasticsearch import Elasticsearch
 import os
