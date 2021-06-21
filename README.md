@@ -1,11 +1,11 @@
 ![NEFOODLIX표지](https://user-images.githubusercontent.com/69391959/122765639-abfbaa80-d2db-11eb-95b7-434010c0ff51.png)
 # NEFOODLIX(RecommendMeFood)
-
+This is an introduction page of **Recommendation Service for Meal Menu** 'NEFOODLIX' through diary.
 ------------
 #### Kyungpook National University
 #### OpenSource Programming[GLSO215]
-#### Team 3 - NEFOODLIX : Final Team Project
 #### first semester of 2021
+#### Team 3 - NEFOODLIX : Final Team Project
 
 ------------
 ## 1. WHAT IS NEFOODLIX?
@@ -13,8 +13,6 @@
 mom : What do you want for dinner?
 
 son : Let's write a diary on NEFOODLIX and get recommendations for dinner.
-
-This is an introduction page of **Recommendation Service for Meal Menu** 'NEFOODLIX' through diary.
 
 ------------
 ## 2. DEVELOPER
