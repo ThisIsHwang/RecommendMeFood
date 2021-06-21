@@ -1,25 +1,25 @@
+![NEFOODLIX표지](https://user-images.githubusercontent.com/69391959/122765639-abfbaa80-d2db-11eb-95b7-434010c0ff51.png)
 # NEFOODLIX(RecommendMeFood)
 
-## 소개
-![NEFOODLIX표지](https://user-images.githubusercontent.com/69391959/122765639-abfbaa80-d2db-11eb-95b7-434010c0ff51.png)
-### 저녁 뭐 먹을래?
-### NEFOODLIX에 일기 적고 저녁 메뉴 추천받자!
+## 1. What is NEFOODLIX?
+### What do you want for dinner?
+### Let's write a diary on NEFOODLIX and get recommendations for dinner.
 
-2021학년도 1학기 오픈소스프로그래밍[GLSO215] `3팀 프로젝트` **일기를 통한 식사 메뉴 추천 서비스** `NEFOODLIX`의 소개 페이지입니다.
+This is an introduction page of OPENSOURCE PROGRAMMING[GLSO215] '3 Team Project' **Recommendation Service for Meal Menu** 'NEFOODLIX' through diary. [first semester of 2021]
 ------------
-## 개발자
+## 2. developer
 ### 박근철
 ### 박승현
 ### 박정식
 ### 황태호
 ------------
-## 사용 예시
+## 3. DEMO
 ![NEFOODLIX_사용예시](https://user-images.githubusercontent.com/69391959/122770378-58d82680-d2e0-11eb-89dd-ff4246ab117b.gif)
 ------------
-## 기술
-1. 실행 환경 셋업, 자동 실행 shell script
-2. flask기반 web service
-3. crawling : naver 오픈 검색 API
+## technology
+1. 실행환경 셋업, 자동 실행 shell script
+2. flask web service
+3. crawling : naver open searching API
 4. crawling : Beautifulsoup4
 5. elasticsearch
 6. skleam
@@ -28,15 +28,15 @@
 9. stemming
 10. tf-idf
 11. cosine similarity
-12. 반응형 웹
+12. responsive web desing
 13. ajax
 14. jquery
 ------------
-## 코드 링크
+## Code Link
 [html](https://github.com/ThisIsHwang/RecommendMeFood/tree/master/templates)
  / [css, javascript](https://github.com/ThisIsHwang/RecommendMeFood/tree/master/static/assets)
  / [back](https://github.com/ThisIsHwang/RecommendMeFood)
-<- 클릭해서 확인해보세요
+<- click
 ------------
 ## library
 1. python 3.6.9 
