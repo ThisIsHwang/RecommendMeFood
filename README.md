@@ -32,11 +32,11 @@
 13. ajax
 14. jquery
 ------------
-## 프론트엔드
+## 코드 링크
 [html](https://github.com/ThisIsHwang/RecommendMeFood/tree/master/templates)
 [css, javascript](https://github.com/ThisIsHwang/RecommendMeFood/tree/master/static/assets)
-## 백엔드
 [back](https://github.com/ThisIsHwang/RecommendMeFood)
+클릭해서 확인해보세요
 ------------
 ## library
 1. python 3.6.9 
