@@ -36,7 +36,7 @@
 [html](https://github.com/ThisIsHwang/RecommendMeFood/tree/master/templates)
 [css, javascript](https://github.com/ThisIsHwang/RecommendMeFood/tree/master/static/assets)
 [back](https://github.com/ThisIsHwang/RecommendMeFood)
-클릭해서 확인해보세요
+<- 클릭해서 확인해보세요
 ------------
 ## library
 1. python 3.6.9 
