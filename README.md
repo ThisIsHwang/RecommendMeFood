@@ -32,13 +32,13 @@ This is an introduction page of OPENSOURCE PROGRAMMING[GLSO215] '3 Team Project'
 13. ajax
 14. jquery
 ------------
-## CODE LINK
+## 5. CODE LINK
 [html](https://github.com/ThisIsHwang/RecommendMeFood/tree/master/templates)
  / [css, javascript](https://github.com/ThisIsHwang/RecommendMeFood/tree/master/static/assets)
  / [back](https://github.com/ThisIsHwang/RecommendMeFood)
 <- click
 ------------
-## LIBRARY
+## 6. LIBRARY
 1. python 3.6.9 
 2. pip (9.0.1)
 3. beautifulsoup4 (4.9.3)
@@ -51,7 +51,7 @@ This is an introduction page of OPENSOURCE PROGRAMMING[GLSO215] '3 Team Project'
 10. numpy (1.19.5)
 11. requests (2.25.1)
 12. scikit-learn(0.24.2)
-## INSTALL & RUN
+## 7. INSTALL & RUN
 ```bash
 fjlaksdjflaksdjflad
 ```
