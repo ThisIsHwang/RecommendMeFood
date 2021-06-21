@@ -32,20 +32,20 @@ son : Let's write a diary on NEFOODLIX and get recommendations for dinner.
 
 ------------
 ## 4. TECHNOLOGY
-1. 실행환경 셋업, 자동 실행 shell script
-2. flask web service
-3. crawling : naver open searching API
-4. crawling : Beautifulsoup4
-5. elasticsearch
-6. skleam
+1. 실행환경 셋업, 자동 실행 Shell sSript
+2. Flask Web Service
+3. Crawling : Naver Open Searching API
+4. Crawling : Beautifulsoup4
+5. Elasticsearch
+6. Skleam
 7. Open-Korean-Text(구 twitter)
-8. regular expression
-9. stemming
-10. tf-idf
-11. cosine similarity
-12. responsive web desing
-13. ajax
-14. jquery
+8. Regular expression
+9. Stemming
+10. TF-IDF
+11. Cosine Similarity
+12. Responsive Web Design
+13. Ajax
+14. Jquery
 
 ------------
 ## 5. CODE LINK
@@ -72,5 +72,7 @@ son : Let's write a diary on NEFOODLIX and get recommendations for dinner.
 ------------
 ## 7. INSTALL & RUN
 ```bash
-fjlaksdjflaksdjflad
+running elasticsearch
+running install.sh
+flask run
 ```
