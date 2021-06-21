@@ -6,14 +6,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-		<script>
-			var _showPage = function() {
-    			var loader = $("div.loader");
-    			var container = $("div.container");
-			    loader.css("display","none");
-    		container.css("display","block");
-  			};
-		</script>
 	</head>
 	<body class="is-preload">
 
@@ -77,10 +69,10 @@
 				<div class="content">
 					<header>
 						<h2>일기를 작성해 보세요.</h2>
-						<p>바쁜 일상 속 결정이 어렵다면 제품명을 추천합니다. 당신이 생각해내지 못한 식사들이 가득합니다.</p>
+						<p>바쁜 일상 속 결정이 어렵다면 Nefoodlix을 추천합니다. 당신이 생각해내지 못한 식사들이 가득합니다.</p>
 					</header>
 					<div class="box">
-						<form method="POST" action="/diary_text">
+						<form method="POST" action="/ajax">
 							
 							<div class="fields">
 								<div class="field"><textarea id="text" name="story" placeholder="망설이지 말고 작성해보세요." rows="6"></textarea></div>
@@ -88,30 +80,35 @@
 							<ul class="actions special">
 								
 									<a href="#layer2" id="resultButton" class="btn-example">결과 보기</a>
-									<div class="dim-layer">
+									
+									<div class="dim-layer" style="display:none;">
 										<div class="dimBg"></div>
 										<div id="layer2" class="pop-layer">
-											<div class="pop-container">
-												<div class="pop-conts">
-													<!--content //-->
+											<div class="loader" style="display:none;" ></div>
+											<div class="pop-container container">
+												
+												<div class="pop-conts" >
+													
 													<p id="resultText" class="ctxt mb20">
-														<!--{{food_name}} -->
+													
 													</p>
-													<p class="card">
+													<p class="card" ">
+														
 														<img id="resultImage" src="" style="width : 80%; height:auto;"/>
 													</p>
-													<!-- close button -->
+													
 													<div class="btn-r">
+														
 														<a href="#" class="btn-layerClose">확인</a>
 													</div>
-													<!--// content-->
+													<p class="loadingText" style="display:none;" >로딩중입니다.</p>
 												</div>
 											</div>
 										</div>
 									</div>
-									
-									
-								
+									<!--<div class="container" style="display:none;">
+										
+									<div>-->
 			</section>
 
 		<!-- Footer -->
@@ -143,10 +140,11 @@
 			<script src="../static/assets/js/popup.js"></script>
 			<script>
 				$('#resultButton').click(function(){
+					
 					var content = $('#text').val();
 					console.log("clicked")
 					document.getElementById("resultText").innerHTML =  "";
-					
+					_showLoading();
 					document.getElementById("resultImage").src = "";
 					console.log(content)
 					var postdata = {
@@ -160,6 +158,7 @@
 						headers: {"Content-Type": "application/json"},
 						contentType: "application/json",
 						success: function(data){
+							_showPage();
 							document.getElementById("resultText").innerHTML =  data.result2;
 							console.log(data.linkResult)
 							document.getElementById("resultImage").src = data.linkResult;
@@ -170,6 +169,25 @@
 						}
 					})
 				})
-				</script>
+			</script>
+			<script>
+				var _showPage = function() {
+					var loader = $("div.loader");
+					loader.css("display","none");
+					var container = $("container");
+					container.css("display","block");
+					var loadingText = $("loadingText");
+					loadingText.css("display", "none");
+				  };
+				  var _showLoading = function() {
+					var loader = $("div.loader");
+					loader.css("display","block");
+					var container = $("container");
+					container.css("display","none");
+					var loadingText = $("loadingText");
+					loadingText.css("display", "block");
+				  };
+
+			</script>
 	</body>
 </html>

@@ -3,15 +3,11 @@ from flask import render_template
 import argparse
 from flask import jsonify, request
 import koreanSimilarity
-from elasticsearch import Elasticsearch
-import re
-from konlpy.tag import Okt
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 
 app = Flask(__name__)
 
-okt = Okt()
 
 #음식의 링크를 받아옵니다.
 def getFoodImgLink(food):
@@ -61,3 +57,5 @@ def ajax():
     link = getFoodImgLink(result)
     print(link)
     return jsonify(result="success", result2=result, linkResult=link)
+
+app.run(debug=True)
