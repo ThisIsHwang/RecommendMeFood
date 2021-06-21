@@ -13,6 +13,8 @@
 ### 박정식
 ### 황태호
 ------------
+![NEFOODLIX_사용예시](https://user-images.githubusercontent.com/69391959/122770378-58d82680-d2e0-11eb-89dd-ff4246ab117b.gif)
+------------
 ## 기술
 ### 실행 환경 셋업, 자동 실행 shell script
 ### flask기반 web service
