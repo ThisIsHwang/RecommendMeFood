@@ -7,10 +7,12 @@ def inspectDB():
     es = Elasticsearch([{"host" : es_host, 'port' : es_port}], timeout = 30)
     data = {"match_all" : {}}
     body = {"query" : data}
-    docs = es.search(index='food', body=body, size=1)
-    if docs['hits']['total']['value']==0:
+    try:
+        docs = es.search(index='food', body=body, size=1)
+        print("이미 데이터가 있어 크롤링해올 필요가 없습니다.")
+    except: 
         print("새로운 데이터들을 크롤링해옵니다.")
         insertToDB()
-    else:
-        print("이미 데이터가 있어 크롤링해올 필요가 없습니다.")
+    
+        
 inspectDB()
