@@ -13,11 +13,12 @@
 ### 박정식
 ### 황태호
 ------------
+## 사용 예시
 ![NEFOODLIX_사용예시](https://user-images.githubusercontent.com/69391959/122770378-58d82680-d2e0-11eb-89dd-ff4246ab117b.gif)
 ------------
 ## 기술
-### 실행 환경 셋업, 자동 실행 shell script
-### flask기반 web service
+1. 실행 환경 셋업, 자동 실행 shell script
+2. flask기반 web service
 ### crawling : naver 오픈 검색 API
 ### crawling : Beautifulsoup4
 ### elasticsearch
@@ -30,3 +31,8 @@
 ### 반응형 웹
 ### ajax
 ### jquery
+------------
+## Install & Run
+```bash
+fjlaksdjflaksdjflad
+```
