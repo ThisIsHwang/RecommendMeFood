@@ -17,10 +17,14 @@ son : Let's write a diary on NEFOODLIX and get recommendations for dinner.
 
 ------------
 ## 2. DEVELOPER
-### 박근철
-### 박승현
-### 박정식
-### 황태호
+
+박근철
+
+박승현
+
+박정식
+
+황태호
 
 ------------
 ## 3. DEMO
