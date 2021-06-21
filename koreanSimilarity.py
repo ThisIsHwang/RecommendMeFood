@@ -31,6 +31,7 @@ def getCorpus():
             contents.append(doc['_source']['content'])
             food_names.append(doc['_source']['food_name'])
 
+
 #자연어 전처리를 위한 함수이다. 형태소를 분석해서 원형으로 바꿔주며 불용어를 처리해준다.
 def morph_and_stopword(s):
     token_ls = ""
@@ -51,13 +52,15 @@ def sub_special(s):
 def recommendFood(title, cosine_sim):
     # 기존 데이터와 음식 유사도를 구하기
     sim_scores = list(enumerate(cosine_sim[0]))
-    print(sim_scores)
+    
     # 유사도에 따라 정렬
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-
+    #print(sim_scores)
     # 가장 유사한 10개의 음식을 받아옴
     sim_scores = sim_scores[1:11]
-    print(sim_scores)
+    for s in sim_scores:
+        print(s)
+    
     # 가장 유사한 10개 음식의 인덱스 받아옴
     food_indices = [i[0] for i in sim_scores]
     

@@ -58,4 +58,4 @@ def ajax():
     print(link)
     return jsonify(result="success", result2=result, linkResult=link)
 
-app.run(debug=True)
+app.run()
