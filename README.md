@@ -34,8 +34,8 @@
 ------------
 ## 코드 링크
 [html](https://github.com/ThisIsHwang/RecommendMeFood/tree/master/templates)
-[css, javascript](https://github.com/ThisIsHwang/RecommendMeFood/tree/master/static/assets)
-[back](https://github.com/ThisIsHwang/RecommendMeFood)
+ / [css, javascript](https://github.com/ThisIsHwang/RecommendMeFood/tree/master/static/assets)
+ / [back](https://github.com/ThisIsHwang/RecommendMeFood)
 <- 클릭해서 확인해보세요
 ------------
 ## library
