@@ -1,6 +1,6 @@
 ![NEFOODLIX표지](https://user-images.githubusercontent.com/69391959/122765639-abfbaa80-d2db-11eb-95b7-434010c0ff51.png)
 # NEFOODLIX(RecommendMeFood)
-This is an introduction page of **Recommendation Service for Meal Menu** 'NEFOODLIX' through diary.
+This is an introduction page of **Recommendation Service for Meal Menu through diary.** 'NEFOODLIX'
 
 ------------
 #### Kyungpook National University
