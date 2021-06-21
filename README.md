@@ -2,11 +2,17 @@
 # NEFOODLIX(RecommendMeFood)
 
 ------------
-## 1. WHAT IS NEFOODLIX?
-What do you want for dinner?
-Let's write a diary on NEFOODLIX and get recommendations for dinner.
+# Kyungpook National University
+# OpenSource Programming[GLSO215]
+# Team 3 - NEFOODLIX : Final Team Project
+# first semester of 2021
 
-This is an introduction page of OPENSOURCE PROGRAMMING[GLSO215] '3 Team Project' **Recommendation Service for Meal Menu** 'NEFOODLIX' through diary. [first semester of 2021]
+------------
+## 1. WHAT IS NEFOODLIX?
+mom : What do you want for dinner?
+son : Let's write a diary on NEFOODLIX and get recommendations for dinner.
+
+This is an introduction page of **Recommendation Service for Meal Menu** 'NEFOODLIX' through diary.
 
 ------------
 ## 2. DEVELOPER
