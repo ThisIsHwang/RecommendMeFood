@@ -71,7 +71,7 @@ son : Let's write a diary on NEFOODLIX and get recommendations for dinner.
 
 ------------
 ## 7. INSTALL & RUN
-install
+install **caution!** run elasticsearch before install)
 ```bash
 running install.sh
 ```
