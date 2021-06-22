@@ -71,8 +71,12 @@ son : Let's write a diary on NEFOODLIX and get recommendations for dinner.
 
 ------------
 ## 7. INSTALL & RUN
+install
+```bash
+running install.sh
+```
+run
 ```bash
 running elasticsearch
-running install.sh
 flask run
 ```
