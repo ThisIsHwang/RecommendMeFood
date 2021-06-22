@@ -71,11 +71,11 @@ son : Let's write a diary on NEFOODLIX and get recommendations for dinner.
 
 ------------
 ## 7. INSTALL & RUN
-install **caution!** run elasticsearch before install)
+`install` (**caution!** run elasticsearch before install)
 ```bash
 running install.sh
 ```
-run
+`run`
 ```bash
 running elasticsearch
 flask run
